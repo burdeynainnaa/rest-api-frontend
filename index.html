@@ -3,16 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <title>Tournament Tracker</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 40px; }
-        .tournament-card { background: #f4f4f4; padding: 15px; margin-bottom: 10px; border-radius: 5px; }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Список турнірів з бекенду</h1>
-    <button id="loadBtn">Завантажити турніри</button>
-    <div id="tournamentsList" style="margin-top: 20px;"></div>
 
-    <script src="script.js"></script>
+    <header>
+        <nav>
+            <a href="#" onclick="showPage('home')">Головна (Турніри)</a>
+            <div id="auth-nav">
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div id="message" class="msg"></div>
+
+        <section id="page-home" class="page">
+            <h1>Список турнірів</h1>
+            <div id="tournaments-list"></div>
+        </section>
+
+        <section id="page-login" class="page" style="display:none;">
+            <h1>Вхід</h1>
+            <form onsubmit="handleLogin(event)">
+                <input type="text" id="login-username" placeholder="Username" required><br>
+                <input type="password" id="login-password" placeholder="Пароль" required><br>
+                <button type="submit">Увійти</button>
+            </form>
+            <p>Ще немає акаунта? <a href="#" onclick="showPage('register')">Зареєструватися</a></p>
+        </section>
+
+        <section id="page-register" class="page" style="display:none;">
+            <h1>Реєстрація</h1>
+            <form onsubmit="handleRegister(event)">
+                <input type="text" id="reg-username" placeholder="Username" required><br>
+                <input type="text" id="reg-first-name" placeholder="Ім'я (необов'язково)"><br>
+                <input type="text" id="reg-last-name" placeholder="Прізвище (необов'язково)"><br>
+                <input type="email" id="reg-email" placeholder="Email" required><br>
+                <input type="password" id="reg-password" placeholder="Пароль" required><br>
+                <input type="password" id="reg-password-conf" placeholder="Підтвердження пароля" required><br>
+                <button type="submit">Зареєструватися</button>
+            </form>
+            <p>Вже є акаунт? <a href="#" onclick="showPage('login')">Увійти</a></p>
+        </section>
+
+        <section id="page-dashboard" class="page" style="display:none;">
+            <h1>Панель управління</h1>
+            <p>Створити новий турнір:</p>
+            <form onsubmit="handleCreateTournament(event)">
+                <input type="text" id="t-title" placeholder="Назва турніру" required><br>
+                <input type="text" id="t-game" placeholder="Гра (наприклад, CS2)" required><br>
+                <input type="date" id="t-start" required><br>
+                <input type="date" id="t-end" required><br>
+                <button type="submit">Створити</button>
+            </form>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
 </body>
 </html>
